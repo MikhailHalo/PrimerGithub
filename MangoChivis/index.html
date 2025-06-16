@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangonadas Deliciosas</title>
+ <!-- Preload -->
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap"  crossorigin="crossorigin" as="font">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="stylesheet" href="css/styles.css">
+    
+</head>
+<body>
+    <header>
+        <h1>¡Disfruta las mejores Mangonadas!</h1>  
+
+    </header>
+    <!-- Logo antes del formulario -->
+<section class="logo-seccion">
+    <img src="images/LogoHD2v.png" alt="Mangonada deliciosa" class="imagen-hero">
+ 
+</section>
+   <p class="parrafo">Sabor que enciende tus sentidos: dulce, ácido y picosito en perfecta armonía,</p>
+  <p class="parrafo">con ingredientes 100% naturales. ¡Ven por la tuya hoy!!</p>
+
+
+
+<form class="formulario">
+  <fieldset>
+    <legend>Realiza tu pedido aquí</legend>
+
+    <div class="contenedor-campos">
+      <div class="campo">
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" class="input-text" type="text" placeholder="Escribe tu nombre" required>
+      </div>
+
+      <div class="campo">
+        <label for="telefono">Teléfono:</label>
+        <input id="telefono" class="input-text" type="tel" placeholder="Tu teléfono" required>
+      </div>
+
+      <div class="campo">
+        <label for="correo">Correo:</label>
+        <input id="correo" class="input-text" type="email" placeholder="Tu email" required>
+      </div>
+
+      <div class="campo">
+        <label for="cantidad">Cantidad:</label>
+        <input id="cantidad" class="input-text" type="number" min="1" placeholder="¿Cuántas mangonadas?" required>
+      </div>
+
+      <div class="campo">
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" class="input-text" placeholder="Escribe algún comentario..."></textarea>
+      </div>
+    </div>
+        <div class="alinear-derecha flex">
+            <input class="boton w-sm-100" type="submit" value="Enviar" >
+            
+        </div>
+    </fieldset>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+    const form = document.getElementById('pedidoForm');
+    const whatsappLink = document.getElementById('whatsapp-link');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Evita que se recargue la página
+
+        const nombre = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const cantidad = document.getElementById('cantidad').value;
+
+        // Crear mensaje para correo
+        const asunto = encodeURIComponent("Nuevo pedido de mangonadas");
+        const cuerpo = encodeURIComponent(`Nombre: ${nombre}\nTeléfono: ${telefono}\nCantidad: ${cantidad}`);
+        const mailtoURL = `mailto:mikhack@hotmail.com?subject=${asunto}&body=${cuerpo}`;
+
+        // Abrir cliente de correo
+        window.location.href = mailtoURL;
+    });
+
+    whatsappLink.addEventListener('click', function() {
+        const nombre = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const cantidad = document.getElementById('cantidad').value;
+
+        const mensaje = encodeURIComponent(`Hola, quiero pedir ${cantidad} mangonada(s).\nMi nombre es: ${nombre}\nMi número es: ${telefono}`);
+        const numeroWhatsApp = "528111769252"; // Reemplaza con tu número con lada internacional (ej. +52 para México)
+        const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+
+        whatsappLink.href = whatsappURL;
+    });
+</script>
+
+<section class="testimonios">
+  <h2>Experiencias reales.</h2>
+  <div class="carrusel-testimonios">
+    <div class="testimonio">"Sabor increíble, fresco y delicioso. ¡Recomendadísimo!" - Ana G.</div>
+    <div class="testimonio">"Refrescantes, dulces y con ese toquecito acidito que las hace perfectas." - María H.</div>
+    <div class="testimonio">"Son el antojo ideal para cualquier momento, siempre quiero otra más." - Fer T.</div>
+    <div class="testimonio">"Nada como una buena mangonada para refrescarme y darme un gustito." - Bere L.</div>
+    <div class="testimonio">"Ese equilibrio entre mango, chamoy y chilito es simplemente increíble." - Alberto F.</div>
+    <div class="testimonio">"Cada vez que pruebo una, siento que estoy en un día de verano perfecto." - Ara M.</div>
+  </div>
+</section>
+
+  
+    <footer>
+        <p class="ColorP">Contacto: WhatsApp 8111769252</p>
+             <p class="ColorP">Síguenos en redes sociales</p>
+        <div class="redes">
+             <a href="https://www.facebook.com/mangochivis" target="_blank">
+                <img src="images/icofacebook.png"  alt="Facebook">
+
+            <a href="https://www.instagram.com/TU_USUARIO" target="_blank">
+                <img src="images/iconistagram.png" alt="Instagram"></a>
+
+            <a href="https://wa.me/528111769252" target="_blank">
+                <img src="images/iconwhat.png" alt="WhatsApp"></a>
+        </div>
+           <p class="ColorP">&copy; 2025 MangoChivis.</p>
+            <p class="ColorP">&copy; Todos los derechos reservados.</p>
+    </footer>
+    <script src="js/script.js"</script>
+
+   
+  const carrusel = document.querySelector('.carrusel-testimonios');
+
+  if (window.innerWidth < 768) {
+    let scrollInterval = setInterval(() => {
+      if (carrusel.scrollLeft + carrusel.clientWidth >= carrusel.scrollWidth) {
+        carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carrusel.scrollBy({ left: carrusel.clientWidth * 0.85, behavior: 'smooth' });
+      }
+    }, 4000); // cada 4 segundos
+  }
+</script>
+</body>
+</html>
